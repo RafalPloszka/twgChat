@@ -25,6 +25,10 @@ export const  GET_SINGLE_ROOM = gql`
       messages {
         body,
         id,
+        insertedAt,
+        user {
+          firstName
+        }
       }
       roomPic,
       user {
@@ -36,4 +40,4 @@ export const  GET_SINGLE_ROOM = gql`
       }
     }
   }
-`
+`;
