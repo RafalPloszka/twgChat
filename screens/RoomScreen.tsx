@@ -3,6 +3,7 @@ import { StyleSheet, Button } from 'react-native';
 import { useQuery } from '@apollo/client';
 
 import MessagesList from '../components/MessagesList';
+import MessageForm from '../components/MessageForm';
 import { View, Text } from '../components/Themed';
 
 import { GET_SINGLE_ROOM } from '../queries';
@@ -23,6 +24,7 @@ export default function RoomScreen({ navigation, route }) {
       <Button onPress={() => navigation.goBack()} title="Back"/>
       <Text>{roomTitle}</Text>
       <MessagesList messages={messages}/>
+      <MessageForm roomId={roomId}/>
     </View>
   );
 }

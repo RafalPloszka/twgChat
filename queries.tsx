@@ -41,3 +41,19 @@ export const  GET_SINGLE_ROOM = gql`
     }
   }
 `;
+
+export const SEND_MESSAGE = gql`
+  mutation sendMesage($body: String!, $roomId: String!) {
+    sendMessage(body: $body, roomId: $roomId) {
+      id,
+      body,
+      insertedAt,
+      user {
+        firstName,
+        lastName,
+        id,
+        profilePic
+      }
+    }
+  }
+`;
