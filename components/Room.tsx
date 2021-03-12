@@ -9,8 +9,6 @@ const Room = props => {
   });
 
   if (loading) return <Text>Loading...</Text>;
-  console.log(data);
-  // const finalData = data.room.name;
   
   return (
     <View>

@@ -4,10 +4,10 @@ import { StyleSheet } from 'react-native';
 import RoomList from '../components/RoomList';
 import { Text, View } from '../components/Themed';
 
-export default function MainScreen() {
+export default function MainScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <RoomList />
+      <RoomList navigation={navigation} />
     </View>
   );
 }
