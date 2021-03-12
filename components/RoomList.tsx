@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useQuery } from '@apollo/client';
+
+import Room from './Room';
 import { GET_ROOMS } from '../queries';
 
 const Item = ({ title }: { title: string }) => (

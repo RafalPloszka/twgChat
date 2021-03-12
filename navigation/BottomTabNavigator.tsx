@@ -52,7 +52,7 @@ function MainNavigator() {
       <MainStack.Screen
         name="MainScreen"
         component={MainScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Main view' }}
       />
     </MainStack.Navigator>
   );
@@ -66,7 +66,7 @@ function RoomNavigator() {
       <RoomStack.Screen
         name="RoomScreen"
         component={RoomScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Room view' }}
       />
     </RoomStack.Navigator>
   );
