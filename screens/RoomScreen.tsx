@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 
 import Room from '../components/Room';
 import { View } from '../components/Themed';
 
-export default function RoomScreen({ route }) {
+export default function RoomScreen({ navigation, route }) {
   const roomId = route.params.room.roomId;
   return (
     <View style={styles.container}>
+      <Button onPress={() => navigation.goBack()} title="Back"/>
       <Room id={`${roomId}`} />
     </View>
   );
