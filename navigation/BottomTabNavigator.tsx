@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import MainScreen from '../screens/MainScreen';
+import RoomScreen from '../screens/RoomScreen';
+import { BottomTabParamList, MainParamList, RoomParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,18 +16,18 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Main"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Main"
+        component={MainNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Room"
+        component={RoomNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -44,30 +44,30 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const MainStack = createStackNavigator<MainParamList>();
 
-function TabOneNavigator() {
+function MainNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
+    <MainStack.Navigator>
+      <MainStack.Screen
+        name="MainScreen"
+        component={MainScreen}
         options={{ headerTitle: 'Tab One Title' }}
       />
-    </TabOneStack.Navigator>
+    </MainStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const RoomStack = createStackNavigator<RoomParamList>();
 
-function TabTwoNavigator() {
+function RoomNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+    <RoomStack.Navigator>
+      <RoomStack.Screen
+        name="RoomScreen"
+        component={RoomScreen}
         options={{ headerTitle: 'Tab Two Title' }}
       />
-    </TabTwoStack.Navigator>
+    </RoomStack.Navigator>
   );
 }
