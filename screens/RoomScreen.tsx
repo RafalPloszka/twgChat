@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 
 import MessagesList from '../components/MessagesList';
 import MessageForm from '../components/MessageForm';
+import { Chat } from '../components/Chat';
 import { View, Text } from '../components/Themed';
 
 import { GET_SINGLE_ROOM, MESSAGES_SUBSCRIPTION } from '../queries';
@@ -18,14 +19,16 @@ export default function RoomScreen({ navigation, route }) {
 
   const roomTitle = data.room.name;
   const messages = data.room.messages;
+  const currentUser = data.room.user
 
   return (
     <View style={styles.container}>
       <Button onPress={() => navigation.goBack()} title="Back"/>
       <Text>{roomTitle}</Text>
-      <MessagesList 
+      <Chat 
         messages={messages}
         roomId={roomId}
+        currentUser={currentUser}
         subscribeToNewMessages={() =>
           subscribeToMore({
             document: MESSAGES_SUBSCRIPTION,
@@ -42,7 +45,6 @@ export default function RoomScreen({ navigation, route }) {
           })
         }
       />
-      <MessageForm roomId={roomId}/>
     </View>
   );
 }

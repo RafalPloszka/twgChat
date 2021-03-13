@@ -29,7 +29,9 @@ export const  GET_SINGLE_ROOM = gql`
         id,
         insertedAt,
         user {
-          firstName
+          id,
+          firstName,
+          profilePic
         }
       }
       roomPic,
@@ -38,7 +40,8 @@ export const  GET_SINGLE_ROOM = gql`
         firstName,
         lastName,
         id,
-        role
+        role,
+        profilePic
       }
     }
   }
