@@ -27,7 +27,7 @@ const authLink = setContext((_, { headers }) => {
 const authedHttpLink = authLink.concat(httpLink);
 
 
-const phoenixSocket = new PhoenixSocket("ws://localhost:4000/socket", {
+const phoenixSocket = new PhoenixSocket("wss://chat.thewidlarzgroup.com/socket", {
   params: () => {
     return { token: token }
     // if (Cookies.get("token")) {
