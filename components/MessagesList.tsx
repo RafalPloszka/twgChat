@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, FlatList, Pressable } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 
 const MessageItem = ({ message }) => {
   const { id, body, user, insertedAt } = message;
@@ -9,11 +9,16 @@ const MessageItem = ({ message }) => {
   );
 }
 
-const MessagesList = ({ messages }) => {
+const MessagesList = (props) => {
+  
+  React.useEffect(() => {
+    console.log('Loading new messages...');
+    props.subscribeToNewMessages();
+  });
 
   return <View>
       <FlatList
-        data={messages}
+        data={props.messages}
         renderItem={({ item }) => (
           <MessageItem
             message={item}

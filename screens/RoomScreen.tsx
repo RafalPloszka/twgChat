@@ -6,11 +6,11 @@ import MessagesList from '../components/MessagesList';
 import MessageForm from '../components/MessageForm';
 import { View, Text } from '../components/Themed';
 
-import { GET_SINGLE_ROOM } from '../queries';
+import { GET_SINGLE_ROOM, MESSAGES_SUBSCRIPTION } from '../queries';
 
 export default function RoomScreen({ navigation, route }) {
   const roomId = route.params.room.roomId;
-  const { data, error, loading } = useQuery(GET_SINGLE_ROOM, {
+  const { subscribeToMore, data, error, loading } = useQuery(GET_SINGLE_ROOM, {
     variables: { id: roomId },
   });
 
@@ -23,7 +23,25 @@ export default function RoomScreen({ navigation, route }) {
     <View style={styles.container}>
       <Button onPress={() => navigation.goBack()} title="Back"/>
       <Text>{roomTitle}</Text>
-      <MessagesList messages={messages}/>
+      <MessagesList 
+        messages={messages}
+        roomId={roomId}
+        subscribeToNewMessages={() =>
+          subscribeToMore({
+            document: MESSAGES_SUBSCRIPTION,
+            variables: { roomId: roomId },
+            updateQuery: (prev, { subscriptionData }) => {
+              if (!subscriptionData.data) return prev;
+              const newFeedItem = subscriptionData.data.messageAdded;
+              return Object.assign({}, prev, {
+                room: {
+                  messages: [newFeedItem, ...prev.room.messages]
+                }
+              });
+            }
+          })
+        }
+      />
       <MessageForm roomId={roomId}/>
     </View>
   );
