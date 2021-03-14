@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     height: '80%',
     width: '100%',
     padding: 20,
+    paddingTop: 30,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     overflow: 'hidden'
