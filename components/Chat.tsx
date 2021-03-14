@@ -42,7 +42,7 @@ export const Chat = (props) => {
     return [
       {
         type: 'url',
-        style: { textDecorationLine: 'underline', color: 'darkorange', wordBreak: 'break-all' },
+        style: { textDecorationLine: 'underline', color: 'darkorange', flexShrink: 1 },
       },
     ]
   }
@@ -144,11 +144,11 @@ const styles = StyleSheet.create({
   sendButton: {
     justifyContent: 'center',
     alignSelf: 'center',
-    width: 31,
-    height: 31,
+    width: 30,
+    height: 30,
     padding: 7,
     marginLeft: 10,
-    borderRadius: '50%',
+    borderRadius: 15,
     backgroundColor: '#5B61B9',
   }
 });

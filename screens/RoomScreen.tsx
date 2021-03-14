@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: '#5B61B9',
-    fontFamily: 'BeVietnam_400Regular'
   },
   header: {
     height: '20%',
@@ -74,6 +73,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     textAlign: 'left',
     padding: 20,
+    paddingTop: 40,
     backgroundColor: '#5B61B9'
   },
   backButton: {
@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
     fontFamily: 'BeVietnam_400Regular'
   },
   chatContainer: {
-    justifySelf: 'flex-end',
     height: '80%',
     width: '100%',
     padding: 20,
