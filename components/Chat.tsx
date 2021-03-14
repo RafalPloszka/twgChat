@@ -129,6 +129,7 @@ export const Chat = (props) => {
       placeholder="Type your message..."
       alwaysShowSend={true}
       textInputStyle={styles.textInput}
+      renderUsernameOnMessage={true}
       renderBubble={renderBubble}
       renderTime={renderTime}
       renderInputToolbar={renderInputToolbar}
