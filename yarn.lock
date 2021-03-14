@@ -1187,6 +1187,11 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
+"@expo-google-fonts/be-vietnam@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/be-vietnam/-/be-vietnam-0.1.0.tgz#cd6464b3b8a18fdb3fac0b64197ba035543c9eca"
+  integrity sha512-JiK+OYV3jgS/Xxx7bO75h8T/X1VDpc3FQZMCVE5ouc1zOVIpXOnbcIyoYI58g4jqd20JN6LfFwjN1JfJZclU8g==
+
 "@expo/config-plugins@1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-1.0.21.tgz#5a6f5c818dd7bccc2f3e381cbf8b0657c38bb302"
