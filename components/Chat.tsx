@@ -2,9 +2,19 @@ import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar, Send, Time } from 'react-native-gifted-chat';
 import { useMutation } from '@apollo/client';
+import { Ionicons } from '@expo/vector-icons'; 
+import moment from 'moment';
 
 import { SEND_MESSAGE } from '../queries';
-import { Ionicons } from '@expo/vector-icons'; 
+
+const formatDate = (date) => {
+  let dateAndTimeArray = date.split(" ");
+  let dateArray = dateAndTimeArray[0].split("-");
+  let newDate = dateArray[1] + "-" + dateArray[0] + "-" + dateArray[2];
+  let newDateAndTime = newDate + " " + dateAndTimeArray[1];
+
+  return newDateAndTime;
+}
 
 export const Chat = (props) => {
   const [sendMessage, { data }] = useMutation(SEND_MESSAGE)
@@ -18,11 +28,13 @@ export const Chat = (props) => {
   const refactorMessagesData = (messages) => {
     const refactoredMessages = messages.map(message => {
       const author = message.user;
+      const modifiedDate = formatDate(message.insertedAt);
+      const formatedDate = moment(modifiedDate, "MM-YYYY-DD HH:mm:ss");
 
       return {
         _id: message.id,
         text: message.body,
-        createdAt: new Date(message.insertedAt),
+        createdAt: formatedDate,
         user: {
           _id: author.id,
           name: author.firstName,
