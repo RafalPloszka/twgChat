@@ -30,6 +30,8 @@ export const Chat = (props) => {
       const author = message.user;
       const modifiedDate = formatDate(message.insertedAt);
       const formatedDate = moment(modifiedDate, "MM-YYYY-DD HH:mm:ss");
+      // set default room pic if there is none in data
+      const profilePic = author.profilePic || require('../assets/images/default_profile_pic.jpg');
 
       return {
         _id: message.id,
@@ -38,7 +40,7 @@ export const Chat = (props) => {
         user: {
           _id: author.id,
           name: author.firstName,
-          avatar: author.profilePic,
+          avatar: profilePic,
         }
       }
     });
@@ -121,7 +123,7 @@ export const Chat = (props) => {
       user={{
         _id: props.currentUser.id,
         name: props.currentUser.firstName,
-        avatar: props.currentUser.profilePic
+        avatar: props.currentUser.profilePic && '../assets/images/default_profile_pic.jpg'
       }}
       parsePatterns={parsePatterns}
       placeholder="Type your message..."
