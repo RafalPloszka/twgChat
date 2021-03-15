@@ -41,15 +41,22 @@ After cloning this repository, you have to install dependencies:
 ```
 yarn install
 ```
+Then create a .env file in your project root directory and insert there 3 variables (TOKEN, API_URL, WSS) with credentials.
 
 Then you should run:
 
 ```
 expo start
 ```
-
 App should be running in your browser. Give it a try!
 
+*Note: in case you have a problem with configuring connection with .env file you can make a workaround:*
+in a file ApolloClient.tsx comment line 8 and add these 3 lines:
+```
+const TOKEN= *your token here*
+const API_URL= *you api url here*
+const WSS= *your websocket link here*
+```
 ## Main tools
 
 - [React Native](https://reactnative.dev/) mobile app fundament
