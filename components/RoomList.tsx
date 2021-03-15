@@ -7,9 +7,11 @@ import RoomItem from './RoomItem';
 import { GET_ROOMS } from '../queries';
 
 const RoomList = ({ navigation }: MainProps ) => {
-  const { data, loading } = useQuery(GET_ROOMS);
+  const { data, loading, error } = useQuery(GET_ROOMS);
 
   if (loading) return <Text style={styles.centeredText}>Loading rooms...</Text>
+  
+  if (error) return <Text>Oops, something went wrong :(</Text>;
 
   const roomsData = data.usersRooms.rooms;
 

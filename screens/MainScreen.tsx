@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import {useFonts, BeVietnam_400Regular, BeVietnam_700Bold } from '@expo-google-fonts/be-vietnam';
+import AppLoading from 'expo-app-loading';
 
 import { MainProps } from '../types';
 import RoomList from '../components/RoomList';
@@ -12,7 +13,7 @@ export default function MainScreen({ route, navigation }: MainProps) {
     BeVietnam_700Bold
   });
 
-  if (!fontsLoaded) return <Text>Loading...</Text>;
+  if (!fontsLoaded) return <AppLoading />;
 
   return (
     <View style={styles.container}>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Pressable } from 'react-native';
 import { useQuery } from '@apollo/client';
 import {useFonts, BeVietnam_400Regular } from '@expo-google-fonts/be-vietnam';
+import AppLoading from 'expo-app-loading';
 
 import { Chat } from '../components/Chat';
 import { View, Text } from '../components/Themed';
@@ -17,7 +18,7 @@ export default function RoomScreen({ route, navigation }: RoomProps) {
     variables: { id: roomId },
   });
 
-  if (loading || !fontsLoaded) return <Text>Loading...</Text>;
+  if (loading || !fontsLoaded) return <AppLoading />;
 
   if (error) return <Text>Oops, something went wrong :(</Text>;
 
