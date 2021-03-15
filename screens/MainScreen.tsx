@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
-import {useFonts, BeVietnam_400Regular, BeVietnam_700Bold } from '@expo-google-fonts/be-vietnam';
+import {useFonts, BeVietnam_400Regular, BeVietnam_500Medium, BeVietnam_700Bold } from '@expo-google-fonts/be-vietnam';
 import AppLoading from 'expo-app-loading';
 
 import { MainProps } from '../types';
@@ -9,7 +9,8 @@ import { Text, View } from '../components/Themed';
 
 export default function MainScreen({ route, navigation }: MainProps) {
   let [fontsLoaded] = useFonts({
-    BeVietnam_400Regular,
+    BeVietnam_400Regular, 
+    BeVietnam_500Medium,
     BeVietnam_700Bold
   });
 

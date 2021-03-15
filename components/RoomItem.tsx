@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   roomTitle: {
     marginLeft: 10,
     fontSize: 16,
-    fontFamily: 'BeVietnam_400Regular'
+    fontFamily: 'BeVietnam_500Medium'
   }
 });
 
