@@ -5,10 +5,10 @@ import {useFonts, BeVietnam_400Regular } from '@expo-google-fonts/be-vietnam';
 
 import { Chat } from '../components/Chat';
 import { View, Text } from '../components/Themed';
-
+import { RoomProps } from '../types';
 import { GET_SINGLE_ROOM, MESSAGES_SUBSCRIPTION } from '../queries';
 
-export default function RoomScreen({ navigation, route }) {
+export default function RoomScreen({ route, navigation }: RoomProps) {
   let [fontsLoaded] = useFonts({
     BeVietnam_400Regular,
   });
@@ -23,7 +23,7 @@ export default function RoomScreen({ navigation, route }) {
 
   const roomTitle = data.room.name;
   const messages = data.room.messages;
-  const currentUser = data.room.user
+  const currentUser = data.room.user;
 
   return (
     <View style={styles.container}>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#ffffff',
     fontSize: 20,
-    marginTop: 16,
+    marginTop: 12,
     fontFamily: 'BeVietnam_400Regular'
   },
   chatContainer: {

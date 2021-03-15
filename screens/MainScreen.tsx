@@ -2,10 +2,11 @@ import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import {useFonts, BeVietnam_400Regular, BeVietnam_700Bold } from '@expo-google-fonts/be-vietnam';
 
+import { MainProps } from '../types';
 import RoomList from '../components/RoomList';
 import { Text, View } from '../components/Themed';
 
-export default function MainScreen({ navigation }) {
+export default function MainScreen({ navigation }: MainProps) {
   let [fontsLoaded] = useFonts({
     BeVietnam_400Regular,
     BeVietnam_700Bold
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
     fontFamily: 'BeVietnam_700Bold'
   },
   logo: {
-    width: 50,
-    height: 50
+    width: 60,
+    height: 60
   },
   roomListContainer: {
     height: '80%',

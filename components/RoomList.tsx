@@ -1,27 +1,29 @@
 import * as React from 'react';
-import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client';
 
+import { MainProps } from '../types';
 import RoomItem from './RoomItem';
 import { GET_ROOMS } from '../queries';
 
-const RoomList = ({ navigation }) => {
+const RoomList = ({ navigation }: MainProps ) => {
   const { data, loading } = useQuery(GET_ROOMS);
 
   if (loading) return <Text style={styles.centeredText}>Loading rooms...</Text>
-  
+
   const roomsData = data.usersRooms.rooms;
-  // const roomsData = null;
+
   return roomsData ? (
     <View style={styles.container}>
       <FlatList
         data={roomsData}
-        renderItem={({ item }) => (
-          <RoomItem
-            room={item}
-            onPress={() => navigation.navigate('Room', { room: { roomId: item.id, roomName: item.name } })}
-          />
-        )}
+        renderItem={({ item }) => {
+          return (
+            <RoomItem
+              room={item}
+              onPress={() => navigation.navigate('Room', { room: { roomId: item.id, roomName: item.name } })} />
+          );
+        }}
         keyExtractor={item => item.id}
       />
     </View>

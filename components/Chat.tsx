@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { Bubble, GiftedChat, InputToolbar, Send, Time } from 'react-native-gifted-chat';
+import { Bubble, GiftedChat, InputToolbar, Send, Time, IMessage } from 'react-native-gifted-chat';
 import { useMutation } from '@apollo/client';
 import { Ionicons } from '@expo/vector-icons'; 
 import moment from 'moment';
 
+import { Message, User } from '../types';
 import { SEND_MESSAGE } from '../queries';
 
-const formatDate = (date) => {
+const formatDate = (date: string) => {
   let dateAndTimeArray = date.split(" ");
   let dateArray = dateAndTimeArray[0].split("-");
   let newDate = dateArray[1] + "-" + dateArray[0] + "-" + dateArray[2];
@@ -16,7 +17,7 @@ const formatDate = (date) => {
   return newDateAndTime;
 }
 
-export const Chat = (props) => {
+export const Chat = (props: {messages: [Message], currentUser: User, roomId: string, subscribeToNewMessages: () => void}) => {
   const [sendMessage, { data }] = useMutation(SEND_MESSAGE)
 
   useEffect(() => {
@@ -25,12 +26,12 @@ export const Chat = (props) => {
   });
 
 
-  const refactorMessagesData = (messages) => {
+  const refactorMessagesData = (messages : [Message]) => {
     const refactoredMessages = messages.map(message => {
       const author = message.user;
       const modifiedDate = formatDate(message.insertedAt);
-      const formatedDate = moment(modifiedDate, "MM-YYYY-DD HH:mm:ss");
-      // set default room pic if there is none in data
+      const formatedDate = new Date(moment(modifiedDate, "MM-YYYY-DD HH:mm:ss").toString());
+      // set default room pic if there is none in data:
       const profilePic = author.profilePic || require('../assets/images/default_profile_pic.jpg');
 
       return {
@@ -44,10 +45,11 @@ export const Chat = (props) => {
         }
       }
     });
+
     return refactoredMessages.reverse();
   }
 
-  const onSend = (messages) => {
+  const onSend = (messages : IMessage[]) => {
     const message = messages[0];
     sendMessage({ variables: { body: message.text, roomId: props.roomId } });
   }; 
@@ -61,6 +63,7 @@ export const Chat = (props) => {
     ]
   }
 
+  // props: any according to docs
   const renderBubble = (props: any) => {
     return (
       <Bubble 
@@ -119,7 +122,7 @@ export const Chat = (props) => {
   return (
     <GiftedChat
       messages={refactorMessagesData(props.messages)}
-      onSend={(message) => onSend(message)}
+      onSend={messages => onSend(messages)}
       user={{
         _id: props.currentUser.id,
         name: props.currentUser.firstName,
@@ -128,6 +131,8 @@ export const Chat = (props) => {
       parsePatterns={parsePatterns}
       placeholder="Type your message..."
       alwaysShowSend={true}
+      // there is no textInputStyle property in GiftedChat.d.ts, but it in docs  
+      // @ts-ignore
       textInputStyle={styles.textInput}
       renderUsernameOnMessage={true}
       renderBubble={renderBubble}

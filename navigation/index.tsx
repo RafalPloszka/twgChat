@@ -2,12 +2,13 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
+import { RootStackParamList } from '../types';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import MainScreen from '../screens/MainScreen';
 import RoomScreen from '../screens/RoomScreen';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -17,7 +18,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
         <Stack.Screen 
           name="Main"
           component={MainScreen}
-          options={{ title: 'TWG chat' }} 
+          options={{ title: 'Chatly' }} 
         />
         <Stack.Screen 
           name="Room"
@@ -29,7 +30,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
               },
             },
           }) => ({
-            title: `Room ${roomName}`
+            title: `${roomName}`
           })}
         />
         <Stack.Screen

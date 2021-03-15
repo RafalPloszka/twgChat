@@ -8,7 +8,6 @@ export const GET_ROOMS = gql`
         firstName,
         lastName,
         id,
-        role
       }
       rooms {
         id,
@@ -40,7 +39,6 @@ export const  GET_SINGLE_ROOM = gql`
         firstName,
         lastName,
         id,
-        role,
         profilePic
       }
     }
