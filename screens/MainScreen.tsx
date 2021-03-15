@@ -6,7 +6,7 @@ import { MainProps } from '../types';
 import RoomList from '../components/RoomList';
 import { Text, View } from '../components/Themed';
 
-export default function MainScreen({ navigation }: MainProps) {
+export default function MainScreen({ route, navigation }: MainProps) {
   let [fontsLoaded] = useFonts({
     BeVietnam_400Regular,
     BeVietnam_700Bold
@@ -21,7 +21,7 @@ export default function MainScreen({ navigation }: MainProps) {
         <Image style={styles.logo} source={require('../assets/images/twg_logo.png')}/>
       </View>
       <View style={styles.roomListContainer}>
-        <RoomList navigation={navigation} />
+        <RoomList route= {route} navigation={navigation} />
       </View>
     </View>
   );
