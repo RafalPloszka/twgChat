@@ -5,21 +5,17 @@ import { createAbsintheSocketLink } from '@absinthe/socket-apollo-link';
 import { Socket as PhoenixSocket } from 'phoenix';
 import { hasSubscription } from '@jumpn/utils-graphql';
 import { split } from '@apollo/client/link/core';
-// import Cookies from 'js-cookie';
-
-// Temporary hardcoded token
-const token = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGF0bHkiLCJleHAiOjE2MTczNjM2NzAsImlhdCI6MTYxNDk0NDQ3MCwiaXNzIjoiY2hhdGx5IiwianRpIjoiOWRjY2FkZjYtNTFiYy00MDdiLTkyOTQtNDc5OTZhZWMxNWNlIiwibmJmIjoxNjE0OTQ0NDY5LCJzdWIiOiIxNTAxNzZjZS1kOTc2LTRlM2MtOGY0NC0wMDU1MGNlYmI0Y2YiLCJ0eXAiOiJhY2Nlc3MifQ.vcmBCaPTGLORbowSczdcjVmWIdrFviRFCLXxjoO5tDaJyJMyHY3VqvUUimVli_msfVAzpOe8_MQUQj5Pl0SsuQ';
+import { TOKEN, API_URL, WSS } from 'react-native-dotenv';
 
 const httpLink = createHttpLink({
-  uri: 'https://chat.thewidlarzgroup.com/api/graphiql'
+  uri: API_URL
 });
 
 const authLink = setContext((_, { headers }) => {
-  // const token = Cookies.get("token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : ""
+      authorization: TOKEN ? `Bearer ${TOKEN}` : ""
     }
   };
 });
@@ -27,14 +23,9 @@ const authLink = setContext((_, { headers }) => {
 const authedHttpLink = authLink.concat(httpLink);
 
 
-const phoenixSocket = new PhoenixSocket("wss://chat.thewidlarzgroup.com/socket", {
+const phoenixSocket = new PhoenixSocket(WSS, {
   params: () => {
-    return { token: token }
-    // if (Cookies.get("token")) {
-    //   return { token: Cookies.get("token") };
-    // } else {
-    //   return {};
-    // }
+    return { token: TOKEN }
   }
 });
 
